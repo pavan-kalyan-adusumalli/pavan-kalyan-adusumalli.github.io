@@ -1,0 +1,24 @@
+.bottom,.reviewform,.row, #userreviews{
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.container > div{
+    padding: 20px;
+    margin: 20px;
+    font-size: 20px;
+    background-color: aqua;
+    border-radius: 5px;
+}
+
+.review{
+    text-align: center;
+    background-color: #97ebdb;
+    border: 1px solid skyblue;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+}

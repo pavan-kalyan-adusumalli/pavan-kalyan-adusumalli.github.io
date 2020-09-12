@@ -1,0 +1,10 @@
+Flask
+Flask-Session
+psycopg2-binary
+SQLAlchemy
+datetime
+functools
+requests
+json
+csv
+

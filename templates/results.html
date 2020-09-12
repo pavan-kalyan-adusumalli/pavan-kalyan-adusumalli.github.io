@@ -1,0 +1,23 @@
+{%extends 'layout.html'%}
+{%block title%}results{%endblock%}
+
+{%block menu%}
+<h4>Project1:Books</h4>
+{{username}}<hr>
+<a href="{{url_for('search')}}">Search</a> &nbsp;
+<a href="{{url_for('logout')}}">Logout</a>
+{%endblock%}
+
+{%block bottom%}
+    <div class="container">
+        {%for result in matches%}
+            <div>
+                <h5>{{result.title}}</h5>
+                {{result.author}} <br>
+                {{result.year}} <br>
+                {{result.isbn}} <br>
+                <a href="{{url_for('bookpage', isbn=result.isbn)}}">more about book</a>
+            </div>
+        {%endfor%}
+    </div>
+{%endblock%}

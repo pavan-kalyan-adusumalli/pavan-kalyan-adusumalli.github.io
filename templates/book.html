@@ -1,0 +1,94 @@
+{%extends 'layout.html'%}
+
+{%block title%}bookpage{%endblock%}
+
+{%block menu%}
+    <h4>Project1:Books</h4>
+    {{username}}<hr>
+    <a href="{{url_for('search')}}">Search</a> &nbsp;
+    <a href="{{url_for('logout')}}">Logout</a>
+{%endblock%}
+
+{%block bottom%}
+    <div class="row">
+
+        <div class="col-lg-4 col-sm-6">
+            <h3>{{book.title}}</h3>
+            <h5>author: {{book.author}}</h5> 
+            <h5>Published on: {{book.year}} </h5>
+            <h5>ISBN no: {{book.isbn}}</h5>
+        </div>
+
+        <div class="col-lg-4 col-sm-6">
+            <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg" alt="Book Cover" height="200px"/>
+        </div>
+
+        <div class="col-lg-4 col-sm-6">
+            <small>poweredby</small><br>
+            <img src="../static/logo.jpg" alt="GOOD READS API" width=200 height=50><br>
+            <h5>average ratings: {{ratings['average_rating']}}</h5>
+            <h5>Reviews submitted: {{ratings['work_reviews_count']}} </h5>
+            <h5>Ratings submitted: {{ratings['work_ratings_count']}}</h5>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="reviewform">
+        <h3>Submit Your Review here</h3>
+
+        <form action="{{url_for('bookpage', isbn=book.isbn)}}" method="POST">
+            Rate book <select id="ratings" name="rating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select> &nbsp;
+            
+            <label for="review">Write review</label>
+            <textarea name="review" id="review" cols="30" rows="1"></textarea>
+            &nbsp;
+
+            <button class="btn btn-primary">Submit</button>
+
+        </form>
+
+    </div>
+
+
+    <div class="review_check">
+        {%if submit == 'False'%}
+            <div class="alert alert-danger" role="alert">
+                You have already submitted your review!
+            </div>
+        {%endif%}
+
+        {%if submit == 'True'%}
+            <div class="alert alert-success" role="alert">
+                Successfully submitted your review!
+            </div>
+        {%endif%}
+
+        {%if submit == 'None'%}
+            <div></div>
+        {%endif%}
+    </div>
+
+    <hr>
+
+    <div class="alert alert-warning" role="alert">
+        <h4 id="userreviews">Reviews submitted by users</h4>
+    </div>
+
+    {%for eachreview in reviews%}
+        <div class="review">
+            <span class="name">{{eachreview.username}} wrote on </span>
+            <span class="time">{{eachreview.time}}</span><br>
+            {{eachreview.comment}} <br>
+            <small>Rated:{{eachreview.rating}}</small>
+        </div>
+    {%endfor%}
+    
+{%endblock%}

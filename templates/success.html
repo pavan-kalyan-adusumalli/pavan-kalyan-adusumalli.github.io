@@ -1,0 +1,15 @@
+{%extends 'layout.html'%}
+
+{%block title%}registration success{%endblock%}
+
+{%block menu%}
+    <h4>Project1:Books</h4>
+{%endblock%}
+
+{%block bottom%}
+    <div class="alert alert-success" role="alert">
+        Successfully created an account for you
+    </div>
+
+    <a href="{{url_for('login')}}">click here to login</a>
+{%endblock%}
